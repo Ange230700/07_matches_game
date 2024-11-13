@@ -1,6 +1,6 @@
 // javascript\functions\removeMatches.mjs
 
-import gameStateVariables from "../variables/gameStateVariables.js";
+import gameStateVariables from "../variables/gameStateVariables.mjs";
 
 function removeMatches(numberOfMatchesToRemove) {
   if (numberOfMatchesToRemove < 1 || numberOfMatchesToRemove > 6) {
@@ -22,7 +22,6 @@ function removeMatches(numberOfMatchesToRemove) {
       gameStateVariables.numberOfRemovals % 2 === 0 ? "Player 1" : "Player 2"
     } removed ${numberOfMatchesToRemove} matches.`,
   );
-  gameStateVariables.numberOfRemovals++;
   console.log(
     `There are ${gameStateVariables.numberOfMatchesRemaining} matches remaining.`,
   );
