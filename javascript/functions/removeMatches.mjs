@@ -4,9 +4,7 @@ import gameStateVariables from "../variables/gameStateVariables.js";
 
 function removeMatches(numberOfMatchesToRemove) {
   if (numberOfMatchesToRemove < 1 || numberOfMatchesToRemove > 6) {
-    console.log(
-      "1 match minimum and 6 matches maximum can be removed at a time.",
-    );
+    console.log("You can only remove between 1 and 6 matches.");
     return;
   }
   if (
@@ -17,12 +15,7 @@ function removeMatches(numberOfMatchesToRemove) {
     return;
   }
   gameStateVariables.numberOfMatchesRemaining -= numberOfMatchesToRemove;
-  console.log(
-    `${
-      gameStateVariables.numberOfRemovals % 2 === 0 ? "Player 1" : "Player 2"
-    } removed ${numberOfMatchesToRemove} matches.`,
-  );
-  gameStateVariables.numberOfRemovals++;
+  console.log(`You removed ${numberOfMatchesToRemove} matches.`);
   console.log(
     `There are ${gameStateVariables.numberOfMatchesRemaining} matches remaining.`,
   );

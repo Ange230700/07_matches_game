@@ -1,15 +1,7 @@
 // javascript\functions\askPlayerMatchesNumberToRemove.mjs
 
-import gameStateVariables from "../variables/gameStateVariables";
-
 function askPlayerMatchesNumberToRemove() {
-  const userInput = prompt(
-    `It's ${
-      gameStateVariables.numberOfRemovals % 2 === 0 ? "player 1" : "player 2"
-    }'s turn. How many matches would ${
-      gameStateVariables.numberOfRemovals % 2 === 0 ? "player 1" : "player 2"
-    } like to remove?`,
-  );
+  const userInput = prompt("How many matches would you like to remove?");
   if (
     isNaN(userInput) ||
     userInput === "" ||
