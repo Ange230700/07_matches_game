@@ -1,6 +1,6 @@
 // javascript\functions\hasPlayerWon.mjs
 
-import gameStateVariables from "../variables/gameStateVariables.mjs";
+import gameStateVariables from "../variables/gameStateVariables.js";
 
 function hasPlayerWon() {
   if (gameStateVariables.numberOfMatchesRemaining === 0) {
@@ -11,7 +11,6 @@ function hasPlayerWon() {
     );
     return true;
   }
-  gameStateVariables.numberOfRemovals++;
   return false;
 }
 
