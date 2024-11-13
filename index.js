@@ -5,10 +5,6 @@ import askPlayerMatchesNumberToRemove from "./javascript/functions/askPlayerMatc
 import removeMatches from "./javascript/functions/removeMatches.mjs";
 import hasPlayerWon from "./javascript/functions/hasPlayerWon.mjs";
 
-(function setUpMatchesGame() {
-  // TODO: Implement the game setup
-})();
-
 (function playMatchesGame() {
   while (gameStateVariables.numberOfMatchesRemaining > 0) {
     const numberOfMatchesToRemove = askPlayerMatchesNumberToRemove();
