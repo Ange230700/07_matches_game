@@ -1,4 +1,4 @@
-// javascript\functions\hasPlayerWon.js
+// javascript\functions\hasPlayerWon.mjs
 
 import gameStateVariables from "../variables/gameStateVariables.js";
 
