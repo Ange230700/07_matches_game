@@ -1,6 +1,6 @@
-// javascript\functions\askUserMatchesNumberToRemove.mjs
+// javascript\functions\askPlayerMatchesNumberToRemove.mjs
 
-function askUserMatchesNumberToRemove() {
+function askPlayerMatchesNumberToRemove() {
   const userInput = prompt("How many matches would you like to remove?");
   if (
     isNaN(userInput) ||
@@ -19,4 +19,4 @@ function askUserMatchesNumberToRemove() {
   return numberOfMatchesToRemove;
 }
 
-export default askUserMatchesNumberToRemove;
+export default askPlayerMatchesNumberToRemove;
