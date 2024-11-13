@@ -3,14 +3,9 @@
 import gameStateVariables from "../variables/gameStateVariables.mjs";
 
 function removeMatches(numberOfMatchesToRemove) {
-  if (
-    numberOfMatchesToRemove <
-      gameStateVariables.numberMinimumOfMatchesToRemoveAllowed ||
-    numberOfMatchesToRemove >
-      gameStateVariables.numberMaximumOfMatchesToRemoveAllowed
-  ) {
+  if (numberOfMatchesToRemove < 1 || numberOfMatchesToRemove > 6) {
     console.log(
-      `${gameStateVariables.numberMinimumOfMatchesToRemoveAllowed} match minimum and ${gameStateVariables.numberMaximumOfMatchesToRemoveAllowed} matches maximum can be removed at a time.`,
+      "1 match minimum and 6 matches maximum can be removed at a time.",
     );
     return;
   }
@@ -21,12 +16,11 @@ function removeMatches(numberOfMatchesToRemove) {
     console.log("There are not enough matches to remove.");
     return;
   }
-  const currentPlayerNumber =
-    (gameStateVariables.numberOfRemovals % gameStateVariables.numberOfPlayers) +
-    1;
   gameStateVariables.numberOfMatchesRemaining -= numberOfMatchesToRemove;
   console.log(
-    `Player ${currentPlayerNumber} removed ${numberOfMatchesToRemove} matches.`,
+    `${
+      gameStateVariables.numberOfRemovals % 2 === 0 ? "Player 1" : "Player 2"
+    } removed ${numberOfMatchesToRemove} matches.`,
   );
   console.log(
     `There are ${gameStateVariables.numberOfMatchesRemaining} matches remaining.`,

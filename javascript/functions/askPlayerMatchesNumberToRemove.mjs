@@ -3,11 +3,12 @@
 import gameStateVariables from "../variables/gameStateVariables.mjs";
 
 function askPlayerMatchesNumberToRemove() {
-  const currentPlayerNumber =
-    (gameStateVariables.numberOfRemovals % gameStateVariables.numberOfPlayers) +
-    1;
   const playerInput = prompt(
-    `It's player ${currentPlayerNumber}'s turn. How many matches would player ${currentPlayerNumber} like to remove?`,
+    `It's ${
+      gameStateVariables.numberOfRemovals % 2 === 0 ? "player 1" : "player 2"
+    }'s turn. How many matches would ${
+      gameStateVariables.numberOfRemovals % 2 === 0 ? "player 1" : "player 2"
+    } like to remove?`,
   );
   if (
     isNaN(playerInput) ||
@@ -19,14 +20,9 @@ function askPlayerMatchesNumberToRemove() {
     return;
   }
   const numberOfMatchesToRemove = parseInt(playerInput);
-  if (
-    numberOfMatchesToRemove <
-      gameStateVariables.numberMinimumOfMatchesToRemoveAllowed ||
-    numberOfMatchesToRemove >
-      gameStateVariables.numberMaximumOfMatchesToRemoveAllowed
-  ) {
+  if (numberOfMatchesToRemove < 1 || numberOfMatchesToRemove > 6) {
     console.log(
-      `${gameStateVariables.numberMinimumOfMatchesToRemoveAllowed} match(es) minimum and ${gameStateVariables.numberMaximumOfMatchesToRemoveAllowed} matches maximum can be removed at a time.`,
+      "1 match minimum and 6 matches maximum can be removed at a time.",
     );
     return;
   }
