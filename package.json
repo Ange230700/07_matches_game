@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix .",
     "lint": "npm run lint:fix",
     "prettier:lint": "npm run prettier && npm run lint",
-    "start": "node index.js",
+    "start": "node script.js",
     "prepare": "husky"
   },
   "license": "ISC",
