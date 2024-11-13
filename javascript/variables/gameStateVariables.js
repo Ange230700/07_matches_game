@@ -1,6 +1,6 @@
 // javascript\variables\gameStateVariables.js
 
-let numberOfMatches = 50;
+let numberOfMatchesRemaining = 50;
 let numberOfMatchesToRemove;
 
-export { numberOfMatches, numberOfMatchesToRemove };
+export { numberOfMatchesRemaining, numberOfMatchesToRemove };
