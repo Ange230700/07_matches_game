@@ -5,7 +5,8 @@ import gameStateVariables from "../variables/gameStateVariables.mjs";
 function hasPlayerWon() {
   if (gameStateVariables.numberOfMatchesRemaining === 0) {
     const currentPlayerNumber =
-      (gameStateVariables.numberOfRemovals % gameStateVariables.numberOfPlayers) +
+      (gameStateVariables.numberOfRemovals %
+        gameStateVariables.numberOfPlayers) +
       1;
     console.log(`Player ${currentPlayerNumber} won!`);
     return true;
