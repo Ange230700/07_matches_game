@@ -1,4 +1,4 @@
-// javascript\functions\askInstallerNumberMaximumOfMatchesToRemoveAllowed.mjs
+// javascript\functions\installer\askInstallerNumberMaximumOfMatchesToRemoveAllowed.mjs
 
 import askUserInput from "../askUserInput.mjs";
 import checkThatUserInputIsNumber from "../checkThatUserInputIsNumber.mjs";

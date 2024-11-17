@@ -1,4 +1,4 @@
-// javascript\functions\checkIfNumberOfMatchesToStartMeetsRequirements.mjs
+// javascript\functions\checkSetup\checkIfNumberOfMatchesToStartMeetsRequirements.mjs
 
 function checkIfNumberOfMatchesToStartMeetsRequirements(
   numberOfMatchesToStartInputByInstaller,
