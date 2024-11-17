@@ -1,4 +1,4 @@
-// javascript\functions\checkIfNumberMinimumOfMatchesToRemoveAllowedMeetsRequirements.mjs
+// javascript\functions\checkSetup\checkIfNumberMinimumOfMatchesToRemoveAllowedMeetsRequirements.mjs
 
 import gameStateVariables from "../../variables/gameStateVariables.mjs";
 

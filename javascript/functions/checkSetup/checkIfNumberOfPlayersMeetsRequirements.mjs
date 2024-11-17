@@ -1,4 +1,4 @@
-// javascript\functions\checkIfNumberOfPlayersMeetsRequirements.mjs
+// javascript\functions\checkSetup\checkIfNumberOfPlayersMeetsRequirements.mjs
 
 function checkIfNumberOfPlayersMeetsRequirements(
   numberOfPlayersInputByInstaller,
