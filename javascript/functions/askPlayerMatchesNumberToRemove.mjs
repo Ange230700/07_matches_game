@@ -1,36 +1,53 @@
 // javascript\functions\askPlayerMatchesNumberToRemove.mjs
 
 import gameStateVariables from "../variables/gameStateVariables.mjs";
+import askUserInput from "./askUserInput.mjs";
+import checkThatUserInputIsNumber from "./checkThatUserInputIsNumber.mjs";
+import convertUserInputToNumber from "./convertUserInputToNumber.mjs";
+import checkIfNumberOfMatchesToRemoveMeetsRequirements from "./checkIfNumberOfMatchesToRemoveMeetsRequirements.mjs";
+import setGameStateVariable from "./setGameStateVariable.mjs";
 
 function askPlayerMatchesNumberToRemove() {
   const currentPlayerNumber =
     (gameStateVariables.numberOfRemovals % gameStateVariables.numberOfPlayers) +
     1;
-  const playerInput = prompt(
-    `It's player ${currentPlayerNumber}'s turn. How many matches would player ${currentPlayerNumber} like to remove?`,
+
+  let playerInput = askUserInput(
+    `Let player ${currentPlayerNumber} play. How many matches do you want to remove?`,
   );
-  if (
-    isNaN(playerInput) ||
-    playerInput === "" ||
-    playerInput === null ||
-    playerInput === undefined
-  ) {
-    console.log("Please enter a number.");
-    return;
-  }
-  const numberOfMatchesToRemove = parseInt(playerInput);
-  if (
-    numberOfMatchesToRemove <
-      gameStateVariables.numberMinimumOfMatchesToRemoveAllowed ||
-    numberOfMatchesToRemove >
-      gameStateVariables.numberMaximumOfMatchesToRemoveAllowed
-  ) {
-    console.log(
-      `${gameStateVariables.numberMinimumOfMatchesToRemoveAllowed} match(es) minimum and ${gameStateVariables.numberMaximumOfMatchesToRemoveAllowed} matches maximum can be removed at a time.`,
+
+  while (checkThatUserInputIsNumber(playerInput) === false) {
+    playerInput = askUserInput(
+      `Let player ${currentPlayerNumber} play. How many matches do you want to remove?`,
     );
-    return;
   }
-  return numberOfMatchesToRemove;
+
+  let numberOfMatchesToRemoveInputByPlayer =
+    convertUserInputToNumber(playerInput);
+
+  while (
+    checkIfNumberOfMatchesToRemoveMeetsRequirements(
+      numberOfMatchesToRemoveInputByPlayer,
+    ) === false
+  ) {
+    playerInput = askUserInput(
+      `Let player ${currentPlayerNumber} play. How many matches do you want to remove?`,
+    );
+
+    while (checkThatUserInputIsNumber(playerInput) === false) {
+      playerInput = askUserInput(
+        `Let player ${currentPlayerNumber} play. How many matches do you want to remove?`,
+      );
+    }
+
+    numberOfMatchesToRemoveInputByPlayer =
+      convertUserInputToNumber(playerInput);
+  }
+
+  return setGameStateVariable(
+    "numberOfMatchesToRemove",
+    numberOfMatchesToRemoveInputByPlayer,
+  );
 }
 
 export default askPlayerMatchesNumberToRemove;

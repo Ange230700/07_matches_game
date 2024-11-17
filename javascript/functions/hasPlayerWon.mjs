@@ -8,10 +8,14 @@ function hasPlayerWon() {
       (gameStateVariables.numberOfRemovals %
         gameStateVariables.numberOfPlayers) +
       1;
-    console.log(`Player ${currentPlayerNumber} won!`);
+
+    alert(`Player ${currentPlayerNumber} won!`);
+
     return true;
   }
+
   gameStateVariables.numberOfRemovals++;
+
   return false;
 }
 
