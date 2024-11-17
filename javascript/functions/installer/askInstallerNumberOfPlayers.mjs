@@ -1,4 +1,4 @@
-// javascript\functions\askInstallerNumberOfPlayers.mjs
+// javascript\functions\installer\askInstallerNumberOfPlayers.mjs
 
 import askUserInput from "../askUserInput.mjs";
 import checkThatUserInputIsNumber from "../checkThatUserInputIsNumber.mjs";
