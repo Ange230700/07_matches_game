@@ -1,48 +1,69 @@
 // javascript\functions\setUpMatchesGame.mjs
 
 import gameStateVariables from "../variables/gameStateVariables.mjs";
-import askInstallerNumberOfPlayers from "./installer/askInstallerNumberOfPlayers.mjs";
-import askInstallerNumberOfMatchesToStart from "./installer/askInstallerNumberOfMatchesToStart.mjs";
-import askInstallerNumberMinimumOfMatchesToRemoveAllowed from "./installer/askInstallerNumberMinimumOfMatchesToRemoveAllowed.mjs";
-import askInstallerNumberMaximumOfMatchesToRemoveAllowed from "./installer/askInstallerNumberMaximumOfMatchesToRemoveAllowed.mjs";
-import setGameStateVariable from "./setGameStateVariable.mjs";
+import getValidatedInput from "./getValidatedInput.mjs";
+import {
+  validateNumberMaximumOfMatchesToRemovePerTurn,
+  validateNumberMinimumOfMatchesToRemovePerTurn,
+  validateNumbersOfPlayers,
+  validateTotalNumberOfMatches,
+} from "./inputValidations.mjs";
 
 function setUpMatchesGame() {
-  if (gameStateVariables.isSetupComplete === true) {
-    alert(
-      "The game setup is already complete. No need to set up the game again.",
-    );
+  alert("Let's set up the game!");
 
-    return true;
+  gameStateVariables.numberOfPlayers = getValidatedInput(
+    "Enter the number of players (minimum: 2, maximum: 5):",
+    (parsedInput) => validateNumbersOfPlayers(parsedInput),
+    "Please enter a number between 2 and 5.",
+  );
+  if (gameStateVariables.numberOfPlayers === undefined) {
+    return;
   }
 
-  let numberOfPlayersSet = askInstallerNumberOfPlayers();
-
-  alert(`The number of players has been set to ${numberOfPlayersSet} players.`);
-
-  let numberOfMatchesToStartSet = askInstallerNumberOfMatchesToStart();
-
-  alert(
-    `The number of matches to start has been set to ${numberOfMatchesToStartSet} matches.`,
+  gameStateVariables.totalNumberOfMatches = getValidatedInput(
+    "Enter the total number of match(es) (minimum 50, maximum 175):",
+    (parsedInput) => validateTotalNumberOfMatches(parsedInput),
+    "Please enter a number between 50 and 175.",
   );
+  if (gameStateVariables.totalNumberOfMatches === undefined) {
+    return;
+  }
 
-  let numberMinimumOfMatchesToRemoveAllowedSet =
-    askInstallerNumberMinimumOfMatchesToRemoveAllowed();
-
-  alert(
-    `The number minimum of matches to remove allowed has been set to ${numberMinimumOfMatchesToRemoveAllowedSet} matches.`,
+  gameStateVariables.numberMinimumOfMatchesToRemovePerTurn = getValidatedInput(
+    `Enter the minimum number of match(es) to remove per turn (minimum 1, maximum ${(gameStateVariables.totalNumberOfMatches - (gameStateVariables.totalNumberOfMatches % 8)) / 8}):`,
+    (parsedInput) =>
+      validateNumberMinimumOfMatchesToRemovePerTurn(
+        parsedInput,
+        gameStateVariables.totalNumberOfMatches,
+      ),
+    `Please enter a number between 1 and ${(gameStateVariables.totalNumberOfMatches - (gameStateVariables.totalNumberOfMatches % 8)) / 8}.`,
   );
+  if (gameStateVariables.numberMinimumOfMatchesToRemovePerTurn === undefined) {
+    return;
+  }
 
-  let numberMaximumOfMatchesToRemoveAllowedSet =
-    askInstallerNumberMaximumOfMatchesToRemoveAllowed();
-
-  alert(
-    `The number maximum of matches to remove allowed has been set to ${numberMaximumOfMatchesToRemoveAllowedSet} matches.`,
+  gameStateVariables.numberMaximumOfMatchesToRemovePerTurn = getValidatedInput(
+    `Enter the maximum number of match(es) to remove per turn (minimum ${gameStateVariables.numberMinimumOfMatchesToRemovePerTurn}, maximum ${(gameStateVariables.totalNumberOfMatches - (gameStateVariables.totalNumberOfMatches % 8)) / 8}):`,
+    (parsedInput) =>
+      validateNumberMaximumOfMatchesToRemovePerTurn(
+        parsedInput,
+        gameStateVariables.numberMinimumOfMatchesToRemovePerTurn,
+        gameStateVariables.totalNumberOfMatches,
+      ),
+    `Please enter a number between ${gameStateVariables.numberMinimumOfMatchesToRemovePerTurn} and ${(gameStateVariables.totalNumberOfMatches - (gameStateVariables.totalNumberOfMatches % 8)) / 8}.`,
   );
+  if (gameStateVariables.numberMaximumOfMatchesToRemovePerTurn === undefined) {
+    return;
+  }
 
-  setGameStateVariable("isSetupComplete", true);
+  gameStateVariables.numberOfMatchesRemaining =
+    gameStateVariables.totalNumberOfMatches;
 
-  return true;
+  gameStateVariables.isSetupComplete = true;
+
+  alert("The game settings have been properly configured.");
+  return gameStateVariables;
 }
 
 export default setUpMatchesGame;
