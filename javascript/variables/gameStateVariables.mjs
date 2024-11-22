@@ -3,14 +3,14 @@
 const gameStateVariables = {
   // game state variables to set up before starting the game
   numberOfPlayers: 2,
-  numberOfMatchesRemaining: 50,
-  numberMinimumOfMatchesToRemoveAllowed: 1,
-  numberMaximumOfMatchesToRemoveAllowed: 6,
+  totalNumberOfMatches: 50,
+  numberMinimumOfMatchesToRemovePerTurn: 1,
+  numberMaximumOfMatchesToRemovePerTurn: (50 - (50 % 8)) / 8,
   isSetupComplete: false,
 
   // game state variables to update during the game
-  numberOfMatchesToRemove: 0,
-  numberOfRemovals: 0,
+  currentPlayerNumber: 1,
+  numberOfMatchesRemaining: 50,
 };
 
 export default gameStateVariables;
