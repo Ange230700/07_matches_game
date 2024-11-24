@@ -1,0 +1,36 @@
+/* css/game_ui.css */
+
+#game-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--standard-spacing);
+}
+
+#game-state p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+#game-state input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 1rem;
+    border-radius: var(--standard-border-radius);
+}
+
+#game-state button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--primary-color-shade-3);
+  color: var(--primary-color-shade-9);
+  border-radius: var(--standard-border-radius);
+  font-family: var(--font-family);
+}
+
+#game-state button:hover {
+  background-color: var(--primary-color-shade-4);
+}
