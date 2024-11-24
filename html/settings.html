@@ -1,0 +1,73 @@
+<!-- html/settings.html -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Matches Game - Settings</title>
+  </head>
+  <body>
+    <h1>Settings</h1>
+    <form id="settings-form">
+      <label for="numberOfPlayers">Number of players (2-5):</label>
+      <input
+        type="number"
+        id="numberOfPlayers"
+        name="numberOfPlayers"
+        min="2"
+        max="5"
+        required
+      />
+
+      <label for="totalNumberOfMatches"
+        >Total number of matches (50-175):</label
+      >
+      <input
+        type="number"
+        id="totalNumberOfMatches"
+        name="totalNumberOfMatches"
+        min="50"
+        max="175"
+        required
+      />
+
+      <label for="numberMinimumOfMatchesToRemovePerTurn"
+        >Minimum matches to remove per turn:</label
+      >
+      <input
+        type="number"
+        id="numberMinimumOfMatchesToRemovePerTurn"
+        name="numberMinimumOfMatchesToRemovePerTurn"
+        min="1"
+        required
+      />
+
+      <label for="numberMaximumOfMatchesToRemovePerTurn"
+        >Maximum matches to remove per turn:</label
+      >
+      <input
+        type="number"
+        id="numberMaximumOfMatchesToRemovePerTurn"
+        name="numberMaximumOfMatchesToRemovePerTurn"
+        required
+      />
+
+      <button type="submit">Save Settings</button>
+    </form>
+
+    <div class="navigation">
+      <a href="../index.html" class="btn">Back to Landing Page</a>
+      <a href="./game_ui.html" class="btn">Play Game</a>
+    </div>
+
+    <script type="module" src="../javascript/settings.js"></script>
+  </body>
+</html>
