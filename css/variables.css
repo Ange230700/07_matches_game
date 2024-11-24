@@ -1,0 +1,70 @@
+/* css\variables.css */
+
+:root {
+  /* === SIZES === */
+  --size-unit: 10px;
+
+  font-size: calc(var(--size-unit) * 1);
+
+  /* === COLORS === */
+  --hue: 220;
+  --saturation: 15%;
+  --lightness: 10%;
+
+  --primary-color-shade-1: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 1)
+  );
+  --primary-color-shade-2: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 2)
+  );
+  --primary-color-shade-3: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 3)
+  );
+  --primary-color-shade-4: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 4)
+  );
+  --primary-color-shade-5: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 5)
+  );
+  --primary-color-shade-6: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 6)
+  );
+  --primary-color-shade-7: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 7)
+  );
+  --primary-color-shade-8: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 8)
+  );
+  --primary-color-shade-9: hsl(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) * 9)
+  );
+
+  /* === FONTS === */
+  --font-family: "Urbanist", sans-serif;
+
+  --standard-font-size: 1rem;
+
+  /* === SPACING === */
+  --standard-spacing: 1rem;
+
+  /* === BORDER RADIUS === */
+  --standard-border-radius: 0.5rem;
+}

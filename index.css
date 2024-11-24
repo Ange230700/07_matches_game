@@ -1,0 +1,5 @@
+/* index.css */
+
+@import "./css/base.css";
+@import "./css/variables.css";
+@import "./css/game_ui.css";
