@@ -1,4 +1,4 @@
-// javascript\variables\gameStateVariables.mjs
+// javascript\state\management.js
 
 const gameStateVariables = {
   // game state variables to set up before starting the game
@@ -13,4 +13,4 @@ const gameStateVariables = {
   numberOfMatchesRemaining: 50,
 };
 
-export default gameStateVariables;
+export { gameStateVariables };
