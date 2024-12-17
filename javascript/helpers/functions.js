@@ -1,5 +1,8 @@
 // javascript\helpers\functions.js
 
+import { updateUI } from "../dom/manipulation.js";
+import { gameStateVariables } from "../state/management.js";
+
 function validateInstallerInputs() {
   if (
     parseInt(document.getElementById("numberOfPlayers").value, 10) < 2 ||
@@ -91,4 +94,119 @@ function saveSettingsToLocalStorage() {
   alert("Settings saved successfully!");
 }
 
-export { validateInstallerInputs, saveSettingsToLocalStorage };
+function setUpGame() {
+  const settings = JSON.parse(localStorage.getItem("matchesGameSettings"));
+  if (!settings || !settings.isSetupComplete) {
+    alert("Game settings not configured. Please go to the settings page.");
+    return;
+  }
+
+  gameStateVariables.numberOfPlayers = settings.numberOfPlayers;
+  gameStateVariables.totalNumberOfMatches = settings.totalNumberOfMatches;
+  gameStateVariables.numberMinimumOfMatchesToRemovePerTurn =
+    settings.numberMinimumOfMatchesToRemovePerTurn;
+  gameStateVariables.numberMaximumOfMatchesToRemovePerTurn =
+    settings.numberMaximumOfMatchesToRemovePerTurn;
+  gameStateVariables.isSetupComplete = settings.isSetupComplete;
+  gameStateVariables.numberOfMatchesRemaining =
+    gameStateVariables.totalNumberOfMatches;
+  gameStateVariables.currentPlayerNumber = 1;
+}
+
+function resetGame() {
+  if (confirm("Do you want to play again?")) {
+    gameStateVariables.numberOfMatchesRemaining =
+      gameStateVariables.totalNumberOfMatches;
+    gameStateVariables.currentPlayerNumber = 1;
+    updateUI();
+  }
+}
+
+function submitMove() {
+  const inputElement = document.getElementById("matches-to-remove");
+  const numberOfMatchesToRemove = parseInt(inputElement.value, 10);
+
+  if (
+    isNaN(numberOfMatchesToRemove) ||
+    numberOfMatchesToRemove <
+      gameStateVariables.numberMinimumOfMatchesToRemovePerTurn ||
+    numberOfMatchesToRemove >
+      Math.min(
+        gameStateVariables.numberMaximumOfMatchesToRemovePerTurn,
+        gameStateVariables.numberOfMatchesRemaining,
+      )
+  ) {
+    alert(
+      `Invalid input. Please enter a number between ${gameStateVariables.numberMinimumOfMatchesToRemovePerTurn} and ${Math.min(gameStateVariables.numberMaximumOfMatchesToRemovePerTurn, gameStateVariables.numberOfMatchesRemaining)}.`,
+    );
+    return;
+  }
+
+  // Update game state
+  gameStateVariables.numberOfMatchesRemaining -= numberOfMatchesToRemove;
+
+  // clear input
+  inputElement.value = "";
+
+  // Update UI
+  updateUI();
+
+  // Check for win or draw
+  if (hasPlayerWon()) {
+    alert(`Player ${gameStateVariables.currentPlayerNumber} wins!`);
+    resetGame();
+    return;
+  }
+
+  if (isItDraw()) {
+    alert("Not enough matches left to continue the game! It's a draw!");
+    resetGame();
+    return;
+  }
+
+  // Switch player
+  switchPlayer();
+}
+
+function switchPlayer() {
+  gameStateVariables.currentPlayerNumber =
+    (gameStateVariables.currentPlayerNumber %
+      gameStateVariables.numberOfPlayers) +
+    1;
+}
+
+function hasPlayerWon() {
+  if (gameStateVariables.numberOfMatchesRemaining === 0) {
+    return true;
+  }
+
+  return false;
+}
+
+function isItDraw() {
+  if (
+    gameStateVariables.numberOfMatchesRemaining <
+    gameStateVariables.numberMinimumOfMatchesToRemovePerTurn
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function updateGameState(numberOfMatchesToRemove) {
+  gameStateVariables.numberOfMatchesRemaining -= numberOfMatchesToRemove;
+
+  alert(
+    `Player ${gameStateVariables.currentPlayerNumber} removed ${numberOfMatchesToRemove} match(es).\n${gameStateVariables.numberOfMatchesRemaining} match(es) remaining.`,
+  );
+}
+
+export {
+  validateInstallerInputs,
+  saveSettingsToLocalStorage,
+  setUpGame,
+  resetGame,
+  submitMove,
+  updateGameState,
+};

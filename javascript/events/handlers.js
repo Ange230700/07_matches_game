@@ -7,17 +7,19 @@ import {
 } from "../components/creation.js";
 import {
   setMainSectionHtmlContent,
+  updateUI,
   waitForClickOnNavigationButton,
   waitForFormSubmission,
+  waitForPlayerMoveSubmission,
 } from "../dom/manipulation.js";
 import {
   saveSettingsToLocalStorage,
+  setUpGame,
   validateInstallerInputs,
 } from "../helpers/functions.js";
 
 const handleFormSubmission = (event) => {
   event.preventDefault();
-
   validateInstallerInputs();
   saveSettingsToLocalStorage();
 };
@@ -28,7 +30,10 @@ const handleClickOnNavigationButton = (event) => {
     waitForFormSubmission();
     waitForClickOnNavigationButton();
   } else {
+    setUpGame();
     setMainSectionHtmlContent(`${createGamePage()}`);
+    updateUI();
+    waitForPlayerMoveSubmission();
     waitForClickOnNavigationButton();
   }
 };
