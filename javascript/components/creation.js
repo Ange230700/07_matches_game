@@ -1,20 +1,31 @@
-<!-- html/settings.html -->
+// javascript\components\creation.js
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+function createNavbar() {
+  return `
+    <ul class="navigation">
+      <li>
+        <button type="button" class="btn">Settings</a>
+      </li>
+      <li>
+        <button type="button" class="btn">Play Game</button>
+      </li>
+    </ul>
+  `;
+}
 
-    <link rel="stylesheet" href="../index.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+function createLandingPage() {
+  return `
+    <h1>Welcome to the Matches Game!</h1>
+    <p>
+      This is a turn-based game where players remove matches from a pile. The
+      player who removes the last match wins!
+    </p>
+    ${createNavbar()}
+  `;
+}
 
-    <title>Matches Game - Settings</title>
-  </head>
-  <body>
+function createSettingsPage() {
+  return `
     <h1>Settings</h1>
     <form id="settings-form">
       <label for="numberOfPlayers">Number of players (2-5):</label>
@@ -63,11 +74,23 @@
       <button type="submit">Save Settings</button>
     </form>
 
-    <div class="navigation">
-      <a href="../index.html" class="btn">Back to Landing Page</a>
-      <a href="./game_ui.html" class="btn">Play Game</a>
+    ${createNavbar()}
+  `;
+}
+
+function createGamePage() {
+  return `
+    <h1>Matches Game</h1>
+    <div id="game-state">
+      <p id="current-player"></p>
+      <p id="matches-remaining"></p>
+      <p id="prompt"></p>
+      <input type="number" id="matches-to-remove" required />
+      <button id="submit-move">Remove Matches</button>
     </div>
 
-    <script type="module" src="../javascript/settings.js"></script>
-  </body>
-</html>
+    ${createNavbar()}
+  `;
+}
+
+export { createLandingPage, createSettingsPage, createGamePage };

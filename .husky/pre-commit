@@ -1,2 +1,3 @@
 npx validate-branch-name
 npx lint-staged
+npm run prettier:lint
